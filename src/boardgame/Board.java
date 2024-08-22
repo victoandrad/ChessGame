@@ -16,6 +16,16 @@ public class Board {
         this.pieces = new Piece[rows][columns];
     }
 
+    // METHODS
+
+    public Piece getPieceAt(int row, int column) {
+        return pieces[row][column];
+    }
+
+    public Piece getPieceAt(Position position) {
+        return getPieceAt(position.getRow(), position.getColumn());
+    }
+
     // GETTERS
 
     public int getRows() {
