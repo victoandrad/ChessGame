@@ -1,7 +1,7 @@
 package chess;
 
 import boardgame.Board;
-import boardgame.Position;
+import chess.ChessPosition;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -30,14 +30,18 @@ public class ChessMatch {
         return mat;
     }
 
-    private void initialSetup() {
-        board.placePiece(new Rook(board, Color.WHITE), new Position(0, 0));
-        board.placePiece(new Rook(board, Color.WHITE), new Position(0, 7));
-        board.placePiece(new Rook(board, Color.WHITE), new Position(7, 0));
-        board.placePiece(new Rook(board, Color.WHITE), new Position(7, 7));
+    public void placeNewPiece(ChessPiece piece, ChessPosition position) {
+        board.placePiece(piece, position.toPosition());
+    }
 
-        board.placePiece(new King(board, Color.BLACK), new Position(0, 4));
-        board.placePiece(new King(board, Color.BLACK), new Position(7, 3));
+    private void initialSetup() {
+        placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('a', 8));
+        placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('h', 8));
+        placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('a', 1));
+        placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('h', 8));
+
+        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('e', 1));
+        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('d', 8));
     }
 
     // GETTERS
