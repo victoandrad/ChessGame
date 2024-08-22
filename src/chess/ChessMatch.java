@@ -11,12 +11,16 @@ public class ChessMatch {
 
     // VARIABLES
 
+    private int turn;
+    private Color currentPlayer;
     private Board board;
 
     // BUILDERS
 
     public ChessMatch() {
         this.board = new Board(8, 8);
+        this.turn = 1;
+        this.currentPlayer = Color.WHITE;
         initialSetup();
     }
 
@@ -48,6 +52,7 @@ public class ChessMatch {
 
     public boolean[][] possibleMoves(ChessPosition source) {
         Position position = source.toPosition();
+        validateSourcePosition(position);
         return board.getPieceAt(position).getPossibleMoves();
     }
 
@@ -57,11 +62,13 @@ public class ChessMatch {
         validateSourcePosition(source);
         validateTargetPosition(source, target);
         Piece capturedPiece = makeMove(source, target);
+        nextTurn();
         return (ChessPiece) capturedPiece;
     }
 
     private void validateSourcePosition(Position position) {
         if (!board.thereIsAPiece(position)) throw new ChessException("There is no piece on source position");
+        if (((ChessPiece) board.getPieceAt(position)).getColor() != currentPlayer) throw new ChessException("The chosen piece is not yours");
         if (!board.getPieceAt(position).isThereAnyPossibleMove()) throw new ChessException("There is no possible moves for the chosen piece");
     }
 
@@ -76,7 +83,20 @@ public class ChessMatch {
         return capturedPiece;
     }
 
+    private void nextTurn() {
+        this.turn++;
+        currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+    }
+
     // GETTERS
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public Color getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     public Board getBoard() {
         return board;
