@@ -63,6 +63,7 @@ public class ChessMatch {
         placeNewPiece(new Knight(board, Color.BLACK), new ChessPosition('b', 8));
         placeNewPiece(new Knight(board, Color.BLACK), new ChessPosition('g', 8));
         placeNewPiece(new King(board, Color.BLACK), new ChessPosition('e', 8));
+        placeNewPiece(new Queen(board, Color.BLACK), new ChessPosition('d', 8));
 
         placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('a', 2));
         placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('b', 2));
@@ -79,6 +80,7 @@ public class ChessMatch {
         placeNewPiece(new Knight(board, Color.WHITE), new ChessPosition('b', 1));
         placeNewPiece(new Knight(board, Color.WHITE), new ChessPosition('g', 1));
         placeNewPiece(new King(board, Color.WHITE), new ChessPosition('d', 1));
+        placeNewPiece(new Queen(board, Color.WHITE), new ChessPosition('e', 1));
     }
 
     public boolean[][] possibleMoves(ChessPosition source) {
