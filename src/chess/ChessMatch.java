@@ -4,6 +4,7 @@ import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
+import chess.pieces.Pawn;
 import chess.pieces.Rook;
 
 import java.util.ArrayList;
@@ -49,13 +50,29 @@ public class ChessMatch {
     }
 
     private void initialSetup() {
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('a', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('b', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('c', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('d', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('e', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('f', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('g', 7));
+        placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('h', 7));
         placeNewPiece(new Rook(board, Color.BLACK), new ChessPosition('a', 8));
         placeNewPiece(new Rook(board, Color.BLACK), new ChessPosition('h', 8));
+        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('d', 8));
+
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('a', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('b', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('c', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('d', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('e', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('f', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('g', 2));
+        placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('h', 2));
         placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('a', 1));
         placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('h', 1));
-
-        placeNewPiece(new King(board, Color.WHITE), new ChessPosition('e', 1));
-        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('d', 8));
+        placeNewPiece(new King(board, Color.WHITE), new ChessPosition('d', 1));
     }
 
     public boolean[][] possibleMoves(ChessPosition source) {
