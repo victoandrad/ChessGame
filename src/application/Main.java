@@ -17,6 +17,7 @@ public class Main {
 
         while (!chessMatch.getCheckMate()) {
             try {
+                UI.clearScreen();
                 UI.printMatch(chessMatch);
                 System.out.println();
                 System.out.print("Source: ");
