@@ -3,6 +3,7 @@ package chess;
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
+import chess.pieces.Bishop;
 import chess.pieces.King;
 import chess.pieces.Pawn;
 import chess.pieces.Rook;
@@ -60,7 +61,9 @@ public class ChessMatch {
         placeNewPiece(new Pawn(board, Color.BLACK), new ChessPosition('h', 7));
         placeNewPiece(new Rook(board, Color.BLACK), new ChessPosition('a', 8));
         placeNewPiece(new Rook(board, Color.BLACK), new ChessPosition('h', 8));
-        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('d', 8));
+        placeNewPiece(new Bishop(board, Color.BLACK), new ChessPosition('c', 8));
+        placeNewPiece(new Bishop(board, Color.BLACK), new ChessPosition('f', 8));
+        placeNewPiece(new King(board, Color.BLACK), new ChessPosition('e', 8));
 
         placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('a', 2));
         placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('b', 2));
@@ -72,6 +75,8 @@ public class ChessMatch {
         placeNewPiece(new Pawn(board, Color.WHITE), new ChessPosition('h', 2));
         placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('a', 1));
         placeNewPiece(new Rook(board, Color.WHITE), new ChessPosition('h', 1));
+        placeNewPiece(new Bishop(board, Color.WHITE), new ChessPosition('c', 1));
+        placeNewPiece(new Bishop(board, Color.WHITE), new ChessPosition('f', 1));
         placeNewPiece(new King(board, Color.WHITE), new ChessPosition('d', 1));
     }
 
