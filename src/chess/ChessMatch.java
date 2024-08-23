@@ -20,6 +20,7 @@ public class ChessMatch {
     private List<ChessPiece> piecesOnTheBoard = new ArrayList<>();
     private List<ChessPiece> capturedPieces = new ArrayList<>();
     private boolean check;
+    private boolean checkMate;
 
     // BUILDERS
 
@@ -74,7 +75,11 @@ public class ChessMatch {
             throw new ChessException("You can't put yourself in check");
         }
         check = (testCheck(opponent(currentPlayer)));
-        nextTurn();
+        if (testCheck(opponent(currentPlayer))) {
+            checkMate = true;
+        } else {
+            nextTurn();
+        }
         return (ChessPiece) capturedPiece;
     }
 
@@ -143,6 +148,29 @@ public class ChessMatch {
         return false;
     }
 
+    public boolean testCheckMate(Color color) {
+        if (!testCheck(color)) return false;
+        List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList());
+        for (Piece piece : list) {
+            boolean[][] mat = piece.getPossibleMoves();
+            for (int i = 0; i < mat.length; i++) {
+                for (int j = 0; j < mat[i].length; j++) {
+                    if (mat[i][j]) {
+                        Position source = ((ChessPiece)piece).getChessPosition().toPosition();
+                        Position target = new Position(i, j);
+                        Piece capturedPiece = makeMove(source, target);
+                        boolean testCheck = testCheck(color);
+                        undoMove(source, target, capturedPiece);
+                        if (!testCheck) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     // GETTERS
 
     public Board getBoard() {
@@ -167,5 +195,9 @@ public class ChessMatch {
 
     public boolean getCheck() {
         return check;
+    }
+
+    public boolean getCheckMate() {
+        return checkMate;
     }
 }
